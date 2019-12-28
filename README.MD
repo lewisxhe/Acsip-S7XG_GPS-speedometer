@@ -1,4 +1,4 @@
-# T-Monitor
+# T-Motion
 
 ![](image/product.jpg)
 
@@ -17,20 +17,20 @@ Simple test of LilyGO T-Motion hardware circuit
 
 2. The program uses **PA4** as the key input pin by default. If you do not connect it, it does not matter, because the default is only used for GPS display, LORA is only to test the transmission of LORA
 
-3. If DFU fails, you can use Jlink or ST-Link to reprogram **frimware/dfu.hex**
+3. If DFU fails, you can use Jlink or ST-Link to reprogram **firmware/dfu.hex**
 Or use Uart for downloading. When using [flasher-stm32](https://www.st.com/en/development-tools/flasher-stm32.html) for programming, you need to hold down the BOOT key and connect to PA9 PA10 for programming.
 
 
     ### Wiring diagram
-    | USB Bridge | UART Download | T-Monitor |
-    | ---------- | ------------- | --------- |
-    | RX         | ->            | PA9       |
-    | TX         | ->            | PA10      |
+    | USB Bridge | UART Download | T-Motion |
+    | ---------- | ------------- | -------- |
+    | RX         | ->            | PA9      |
+    | TX         | ->            | PA10     |
 
-    | Jlink/ST-Link | Download | T-Monitor |
-    | ------------- | -------- | --------- |
-    | SCLK          | ->       | SCLK      |
-    | SDIO          | ->       | SDIO      |
+    | Jlink/ST-Link | Download | T-Motion |
+    | ------------- | -------- | -------- |
+    | SCLK          | ->       | SCLK     |
+    | SDIO          | ->       | SDIO     |
 
     ### Pinout
     | S76/78G           | Pin  |
