@@ -21,6 +21,12 @@ Simple test of LilyGO T-Motion hardware circuit
 Or use Uart for downloading. When using [flasher-stm32](https://www.st.com/en/development-tools/flasher-stm32.html) for programming, you need to hold down the BOOT key and connect to PA9 PA10 for programming.
 
 
+4. Write firmware.bin from the command line
+```
+dfu-util.exe -a 0  -s 0x08000000 -R -D firmware.bin
+```
+
+
     ### Wiring diagram
     | USB Bridge | UART Download | T-Motion |
     | ---------- | ------------- | -------- |

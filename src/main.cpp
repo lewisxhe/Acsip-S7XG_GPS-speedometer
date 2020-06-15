@@ -73,6 +73,7 @@ bool sx1278_ok = false;
 bool isSave = false;
 uint32_t timeStamp = 0;
 int counter = 0;
+bool find_old = false;
 
 char dataBuffer[5][DATABUFFER_SIZE] = {
     {"00.00"},
@@ -268,6 +269,7 @@ void gpsDetect()
         DEBUGLN(gps.hdop.value());
     }
 
+    if (!find_old)return;
     static uint32_t stampTime = 0;
 
     if (millis() - stampTime > 1000 ) {
@@ -312,14 +314,18 @@ void setup()
 
     Wire.begin();
 
-    u8g2.begin();
-    u8g2.clearBuffer();
-    u8g2.setFont(u8g2_font_profont22_mf );
-    u8g2.drawStr(32, 24, "SoftRF");
-    u8g2.drawStr(48, 42, "and");
-    u8g2.drawStr(32, 60, "LilyGO");
-    u8g2.sendBuffer();
-    delay(8000);
+    Wire.beginTransmission(SSD1306_ADDRRESS);
+    if (Wire.endTransmission() == 0) {
+        u8g2.begin();
+        u8g2.clearBuffer();
+        u8g2.setFont(u8g2_font_profont22_mf );
+        u8g2.drawStr(32, 24, "SoftRF");
+        u8g2.drawStr(48, 42, "and");
+        u8g2.drawStr(32, 60, "LilyGO");
+        u8g2.sendBuffer();
+        find_old = true;
+        delay(8000);
+    }
 
     if (loarSetup()) {
         sx1278_ok = true;
@@ -342,6 +348,7 @@ void setup()
             setRadioDirection(false);
             break;
         case 2:
+            if (!find_old)return;
             u8g2.clear();
             u8g2.setFont(u8x8_font_8x13_1x2_f);
         default:
